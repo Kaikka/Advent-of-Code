@@ -50,7 +50,7 @@ public class Day6_2 {
                         if (isBlocker && currentChar == TAPPED_THAT) {
                             // We've been here before and encountered the blockade
                             // Or at least this was the plan. Had a working solution, then tried to refactor into this for slightly better performance,
-                            // but now I'm missing something :^)
+                            // but this has issues with 2 turns on the same spot
                             infinite = true;
                             break;
                         }
