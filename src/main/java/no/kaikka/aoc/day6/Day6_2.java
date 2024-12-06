@@ -52,13 +52,6 @@ public class Day6_2 {
                     if (direction == Direction.LEFT) {
                         if (xPos == 0) break;
                         boolean isBlocker = inputCopy[yPos].charAt(xPos-1) == BLOCKADE;
-                        /*if (isBlocker && currentChar == TAPPED_THAT) {
-                            // We've been here before and encountered the blockade
-                            // Or at least this was the plan. Had a working solution, then tried to refactor into this for slightly better performance,
-                            // but this has issues with 2 turns on the same spot
-                            infinite = true;
-                            break;
-                        }*/
 
                         StringBuilder replacement = new StringBuilder(inputCopy[yPos]);
                         replacement.setCharAt(xPos, TAPPED_THAT);
