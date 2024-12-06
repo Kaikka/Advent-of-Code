@@ -5,7 +5,13 @@ import no.kaikka.aoc.utils.AOCUtils;
 public class Day6_2 {
     public static void main(String[] args) {
         var start = System.currentTimeMillis();
-        String[] input = AOCUtils.getInput(6).split("\n");
+        String[] rawInput = AOCUtils.getInput(6).split("\n");
+        char[][] input = new char[rawInput.length][];
+
+        for (int i = 0; i < input.length; i++) {
+            var charr = rawInput[i].toCharArray();
+            input[i] = charr;
+        }
 
         final char BLOCKADE = '#';
         final char TAPPED_THAT = 'X';
@@ -14,35 +20,37 @@ public class Day6_2 {
         int startingXIndex = -1;
 
         for (int i = 0; i < input.length; i++) {
-            if (input[i].contains("^")) {
-                startingXIndex = input[i].indexOf("^");
-                startingYIndex = i;
-                break;
+            for (int j = 0; j < input[i].length; j++) {
+                if (input[i][j] == '^') {
+                    startingXIndex = j;
+                    startingYIndex = i;
+                }
             }
         }
 
         // Very good O(n) :^)
         for (int i = 0; i < input.length; i++) {
-            for (int j = 0; j < input[i].length(); j++) {
+            for (int j = 0; j < input[i].length; j++) {
                 Direction direction = Direction.UP;
                 int yPos = startingYIndex;
                 int xPos = startingXIndex;
-                String[] inputCopy = new String[input.length];
-                System.arraycopy(input, 0, inputCopy, 0, input.length);
+                char[][] inputCopy = new char[input.length][];
+                //System.arraycopy(input, 0, inputCopy, 0, input.length);
+                for (int c = 0; c < input.length; c++) {
+                    inputCopy[c] = input[c].clone();
+                }
 
-                if (inputCopy[i].charAt(j) == BLOCKADE || inputCopy[i].startsWith("^", j)) {
+                if (inputCopy[i][j] == BLOCKADE || inputCopy[i][j] == '^') {
                     continue;
                 }
 
-                if (inputCopy[i].startsWith(".", j)) {
-                    StringBuilder replacement = new StringBuilder(inputCopy[i]);
-                    replacement.setCharAt(j, BLOCKADE);
-                    inputCopy[i] = replacement.toString();
+                if (inputCopy[i][j] == '.') {
+                    inputCopy[i][j] = BLOCKADE;
                 }
 
                 int movesWithoutUnseenSpot = 0;
                 while (true) {
-                    char currentChar = inputCopy[yPos].charAt(xPos);
+                    char currentChar = inputCopy[yPos][xPos];
 
                     if (movesWithoutUnseenSpot == 4) {
                         count++;
@@ -51,11 +59,9 @@ public class Day6_2 {
 
                     if (direction == Direction.LEFT) {
                         if (xPos == 0) break;
-                        boolean isBlocker = inputCopy[yPos].charAt(xPos-1) == BLOCKADE;
+                        boolean isBlocker = inputCopy[yPos][xPos-1] == BLOCKADE;
 
-                        StringBuilder replacement = new StringBuilder(inputCopy[yPos]);
-                        replacement.setCharAt(xPos, TAPPED_THAT);
-                        inputCopy[yPos] = replacement.toString();
+                        inputCopy[yPos][xPos] = TAPPED_THAT;
 
                         if (isBlocker) {
                             direction = direction.next();
@@ -73,11 +79,9 @@ public class Day6_2 {
 
                     if (direction == Direction.DOWN) {
                         if (yPos == inputCopy.length - 1) break;
-                        boolean isBlocker = inputCopy[yPos + 1].charAt(xPos) == BLOCKADE;
+                        boolean isBlocker = inputCopy[yPos + 1][xPos] == BLOCKADE;
 
-                        StringBuilder replacement = new StringBuilder(inputCopy[yPos]);
-                        replacement.setCharAt(xPos, TAPPED_THAT);
-                        inputCopy[yPos] = replacement.toString();
+                        inputCopy[yPos][xPos] = TAPPED_THAT;
 
                         if (isBlocker) {
                             direction = direction.next();
@@ -95,12 +99,11 @@ public class Day6_2 {
                     }
 
                     if (direction == Direction.RIGHT) {
-                        if (xPos + 1 == inputCopy[yPos].length()) break;
-                        boolean isBlocker = inputCopy[yPos].charAt(xPos+1) == BLOCKADE;
+                        if (xPos + 1 == inputCopy[yPos].length) break;
+                        boolean isBlocker = inputCopy[yPos][xPos+1] == BLOCKADE;
 
-                        StringBuilder replacement = new StringBuilder(inputCopy[yPos]);
-                        replacement.setCharAt(xPos, TAPPED_THAT);
-                        inputCopy[yPos] = replacement.toString();
+                        inputCopy[yPos][xPos] = TAPPED_THAT;
+
                         if (isBlocker) {
                             direction = direction.next();
                             if (currentChar == TAPPED_THAT) {
@@ -118,11 +121,9 @@ public class Day6_2 {
 
                     if (direction == Direction.UP) {
                         if (yPos == 0) break;
-                        boolean isBlocker = inputCopy[yPos - 1].charAt(xPos) == BLOCKADE;
+                        boolean isBlocker = inputCopy[yPos - 1][xPos] == BLOCKADE;
 
-                        StringBuilder replacement = new StringBuilder(inputCopy[yPos]);
-                        replacement.setCharAt(xPos, TAPPED_THAT);
-                        inputCopy[yPos] = replacement.toString();
+                        inputCopy[yPos][xPos] = TAPPED_THAT;
 
                         if (isBlocker) {
                             direction = direction.next();
