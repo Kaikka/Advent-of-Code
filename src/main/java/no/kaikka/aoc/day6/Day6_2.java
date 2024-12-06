@@ -40,20 +40,25 @@ public class Day6_2 {
                     inputCopy[i] = replacement.toString();
                 }
 
-                boolean infinite = false;
+                int movesWithoutUnseenSpot = 0;
                 while (true) {
                     char currentChar = inputCopy[yPos].charAt(xPos);
+
+                    if (movesWithoutUnseenSpot == 4) {
+                        count++;
+                        break;
+                    }
 
                     if (direction == Direction.LEFT) {
                         if (xPos == 0) break;
                         boolean isBlocker = inputCopy[yPos].charAt(xPos-1) == BLOCKADE;
-                        if (isBlocker && currentChar == TAPPED_THAT) {
+                        /*if (isBlocker && currentChar == TAPPED_THAT) {
                             // We've been here before and encountered the blockade
                             // Or at least this was the plan. Had a working solution, then tried to refactor into this for slightly better performance,
                             // but this has issues with 2 turns on the same spot
                             infinite = true;
                             break;
-                        }
+                        }*/
 
                         StringBuilder replacement = new StringBuilder(inputCopy[yPos]);
                         replacement.setCharAt(xPos, TAPPED_THAT);
@@ -61,8 +66,14 @@ public class Day6_2 {
 
                         if (isBlocker) {
                             direction = direction.next();
+                            if (currentChar == TAPPED_THAT) {
+                                movesWithoutUnseenSpot++;
+                            }
                         } else {
                             xPos--;
+                            if (currentChar != TAPPED_THAT) {
+                                movesWithoutUnseenSpot = 0;
+                            }
                         }
                         continue;
                     }
@@ -70,10 +81,6 @@ public class Day6_2 {
                     if (direction == Direction.DOWN) {
                         if (yPos == inputCopy.length - 1) break;
                         boolean isBlocker = inputCopy[yPos + 1].charAt(xPos) == BLOCKADE;
-                        if (isBlocker && currentChar == TAPPED_THAT) {
-                            infinite = true;
-                            break;
-                        }
 
                         StringBuilder replacement = new StringBuilder(inputCopy[yPos]);
                         replacement.setCharAt(xPos, TAPPED_THAT);
@@ -81,8 +88,14 @@ public class Day6_2 {
 
                         if (isBlocker) {
                             direction = direction.next();
+                            if (currentChar == TAPPED_THAT) {
+                                movesWithoutUnseenSpot++;
+                            }
                         } else {
                             yPos++;
+                            if (currentChar != TAPPED_THAT) {
+                                movesWithoutUnseenSpot = 0;
+                            }
                         }
 
                         continue;
@@ -91,18 +104,20 @@ public class Day6_2 {
                     if (direction == Direction.RIGHT) {
                         if (xPos + 1 == inputCopy[yPos].length()) break;
                         boolean isBlocker = inputCopy[yPos].charAt(xPos+1) == BLOCKADE;
-                        if (isBlocker && currentChar == TAPPED_THAT) {
-                            infinite = true;
-                            break;
-                        }
 
                         StringBuilder replacement = new StringBuilder(inputCopy[yPos]);
                         replacement.setCharAt(xPos, TAPPED_THAT);
                         inputCopy[yPos] = replacement.toString();
                         if (isBlocker) {
                             direction = direction.next();
+                            if (currentChar == TAPPED_THAT) {
+                                movesWithoutUnseenSpot++;
+                            }
                         } else {
                             xPos++;
+                            if (currentChar != TAPPED_THAT) {
+                                movesWithoutUnseenSpot = 0;
+                            }
                         }
 
                         continue;
@@ -111,10 +126,6 @@ public class Day6_2 {
                     if (direction == Direction.UP) {
                         if (yPos == 0) break;
                         boolean isBlocker = inputCopy[yPos - 1].charAt(xPos) == BLOCKADE;
-                        if (isBlocker && currentChar == TAPPED_THAT) {
-                            infinite = true;
-                            break;
-                        }
 
                         StringBuilder replacement = new StringBuilder(inputCopy[yPos]);
                         replacement.setCharAt(xPos, TAPPED_THAT);
@@ -122,15 +133,17 @@ public class Day6_2 {
 
                         if (isBlocker) {
                             direction = direction.next();
+                            if (currentChar == TAPPED_THAT) {
+                                movesWithoutUnseenSpot++;
+                            }
                         } else {
                             yPos--;
+                            if (currentChar != TAPPED_THAT) {
+                                movesWithoutUnseenSpot = 0;
+                            }
                         }
                         continue;
                     }
-                }
-
-                if (infinite) {
-                    count++;
                 }
             }
         }
