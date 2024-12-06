@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 public class Day4_1 {
     public static void main(String[] args) {
-        List<String> input = Arrays.stream(AOCUtils.getInput().split("\n")).toList();
+        List<String> input = Arrays.stream(AOCUtils.getInput(4).split("\n")).toList();
 
         List<String> res = new ArrayList<>();
         for (int i = 0; i < 2; i++) {

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Day5_1 {
     public static void main(String[] args) {
-        String[] input = AOCUtils.getInput().split("\n\n");
+        String[] input = AOCUtils.getInput(5).split("\n\n");
         String[] rules = input[0].split("\n");
         String[] updates = input[1].split("\n");
         HashMap<String, List<String>> rulesMap = new HashMap<>();

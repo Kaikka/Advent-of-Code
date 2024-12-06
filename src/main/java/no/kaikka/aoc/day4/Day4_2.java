@@ -4,7 +4,7 @@ import no.kaikka.aoc.utils.AOCUtils;
 
 public class Day4_2 {
     public static void main(String[] args) {
-        String[] input = AOCUtils.getInput().split("\n");
+        String[] input = AOCUtils.getInput(4).split("\n");
         int counter = 0;
 
         for (int i = 1; i < input.length-1; i++) {
