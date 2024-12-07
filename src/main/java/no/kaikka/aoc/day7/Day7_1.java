@@ -15,11 +15,8 @@ public class Day7_1 {
             int splitter = s.indexOf(':');
             long goal = Long.parseLong(s.substring(0, splitter));
             int[] numbers = Arrays.stream(s.substring(splitter + 1).trim().split(" ")).mapToInt(Integer::parseInt).toArray();
-            int n = numbers[0];
 
-            int[] numbersCopy = Arrays.copyOfRange(numbers, 1, numbers.length);
-
-            if (solve(numbersCopy, goal, n)) counter += goal;
+            if (solve(numbers, 1, goal, numbers[0])) counter += goal;
         }
 
         System.out.println("Part 1: " + counter);
@@ -27,15 +24,14 @@ public class Day7_1 {
         System.out.println("Runtime: " + (end - start) + "ms");
     }
 
-    private static boolean solve(int[] values, long goal, long n) {
+    private static boolean solve(int[] values, int index, long goal, long n) {
         if (n == goal) return true;
-        if (values.length == 0 || n > goal) return false;
+        if (index >= values.length || n > goal) return false;
 
-        long added = n + values[0];
-        long multiplied = n * values[0];
+        int m = values[index];
+        long added = n + m;
+        long multiplied = n * m;
 
-        int[] newValues = Arrays.copyOfRange(values, 1, values.length);
-
-        return solve(newValues, goal, added) || solve(newValues, goal, multiplied);
+        return solve(values, index+1, goal, added) || solve(values, index+1, goal, multiplied);
     }
 }
