@@ -15,6 +15,7 @@ public class Day8_1 {
             char[] arr = input.get(i);
             for (int j = 0; j < arr.length; j++) {
                 if (arr[j] == '.') continue;
+                // Coordinates being added here are swapped around (its y,x). Realized while doing p2, but cba fixing that for p1, so a comment will do :^)
                 antennas.computeIfAbsent(String.valueOf(arr[j]), k -> new ArrayList<>()).add(new int[]{i, j});
             }
         }
