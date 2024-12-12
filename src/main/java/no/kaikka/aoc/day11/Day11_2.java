@@ -14,7 +14,7 @@ public class Day11_2 {
                 .toList();
         var start = System.nanoTime();
 
-        final int BLINKS = 25;
+        final int BLINKS = 75;
         HashMap<Long, Long> stones = new HashMap<>();
 
         for (Long l : input) {
