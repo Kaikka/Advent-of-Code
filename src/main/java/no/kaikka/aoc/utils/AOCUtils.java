@@ -27,7 +27,7 @@ public class AOCUtils {
             throw new RuntimeException(e);
         }
         String cookieValue = props.getProperty("cookie");
-        String fileName = "src/main/resources/" + day + ".txt";
+        String fileName = "src/main/resources/" + day + ".txt"; // TODO: use yyyy-mm-dd
 
         String cachedString = readFromCachedFile(fileName);
         if (cachedString != null) {
@@ -37,7 +37,7 @@ public class AOCUtils {
 
         try (HttpClient client = HttpClient.newHttpClient()) {
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://adventofcode.com/2024/day/" + day + "/input"))
+                    .uri(URI.create("https://adventofcode.com/2025/day/" + day + "/input")) // TODO: Make this not hardcoded for year
                     .header("Cookie", cookieValue)
                     .build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
