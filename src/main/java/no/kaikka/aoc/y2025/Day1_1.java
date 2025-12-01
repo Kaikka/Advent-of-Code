@@ -37,11 +37,6 @@ public class Day1_1 extends AOCRunner {
         return "" + timesAtZero;
     }
 
-    @Override
-    public String part2(String input) {
-        return "Not yet implemented";
-    }
-
     public enum Direction {
         LEFT,
         RIGHT
@@ -49,5 +44,13 @@ public class Day1_1 extends AOCRunner {
 
     private static Direction getDirection(char c) {
         return (c == 'L') ?  Direction.LEFT : Direction.RIGHT;
+    }
+
+    @Override
+    public String part2(String input) {
+        /*
+        Seems rather easy, do same as part 1 but also count if it goes <0 or >99 (can happen multiple times)
+         */
+        return "Not yet implemented";
     }
 }
