@@ -1,4 +1,4 @@
-package no.kaikka.aoc.day6;
+package no.kaikka.aoc.y2024.day6;
 
 import no.kaikka.aoc.utils.AOCUtils;
 

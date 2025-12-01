@@ -1,10 +1,6 @@
-package no.kaikka.aoc.day12;
+package no.kaikka.aoc.y2024.day12;
 
 import no.kaikka.aoc.utils.AOCUtils;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Day12_1 {
     public static void main(String[] args) {

@@ -1,8 +1,7 @@
-package no.kaikka.aoc.day11;
+package no.kaikka.aoc.y2024.day11;
 
 import no.kaikka.aoc.utils.AOCUtils;
 
-import java.math.BigInteger;
 import java.util.*;
 
 @SuppressWarnings("Duplicates")

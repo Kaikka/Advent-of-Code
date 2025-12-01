@@ -1,10 +1,10 @@
-package no.kaikka.aoc.day7;
+package no.kaikka.aoc.y2024.day7;
 
 import no.kaikka.aoc.utils.AOCUtils;
 
 import java.util.Arrays;
 
-public class Day7_1 {
+public class Day7_2 {
     public static void main(String[] args) {
         var start = System.currentTimeMillis();
         String[] input = AOCUtils.getInput(7).split("\n");
@@ -19,7 +19,7 @@ public class Day7_1 {
             if (solve(numbers, 1, goal, numbers[0])) counter += goal;
         }
 
-        System.out.println("Part 1: " + counter);
+        System.out.println("Part 2: " + counter);
         var end = System.currentTimeMillis();
         System.out.println("Runtime: " + (end - start) + "ms");
     }
@@ -31,7 +31,8 @@ public class Day7_1 {
         long m = values[index];
         long added = n + m;
         long multiplied = n * m;
+        long concatinated = Long.parseLong("" + n + m);
 
-        return solve(values, index+1, goal, added) || solve(values, index+1, goal, multiplied);
+        return solve(values, index+1, goal, added) || solve(values, index+1, goal, multiplied) || solve(values, index+1, goal, concatinated);
     }
 }
