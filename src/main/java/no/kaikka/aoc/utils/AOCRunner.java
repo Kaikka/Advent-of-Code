@@ -1,6 +1,4 @@
-package no.kaikka.aoc.y2025;
-
-import no.kaikka.aoc.utils.AOCUtils;
+package no.kaikka.aoc.utils;
 
 public abstract class AOCRunner {
     public void run() {

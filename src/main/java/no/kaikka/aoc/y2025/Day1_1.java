@@ -1,5 +1,7 @@
 package no.kaikka.aoc.y2025;
 
+import no.kaikka.aoc.utils.AOCRunner;
+
 public class Day1_1 extends AOCRunner {
 
     public static void main(String[] args) {
