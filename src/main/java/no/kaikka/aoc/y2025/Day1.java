@@ -8,7 +8,7 @@ public class Day1 extends AOCRunner {
         // Why on earth does part 1 run slower than part 2?
         // Part 1 runtime: 3.28 ms
         // Part 2 runtime: 2.03 ms
-        new Day1().run();
+        new Day1().run(2025, 1);
     }
 
     @Override

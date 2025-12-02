@@ -1,8 +1,8 @@
 package no.kaikka.aoc.utils;
 
 public abstract class AOCRunner {
-    public void run() {
-        String input = AOCUtils.getInput();
+    public void run(int year, int day) {
+        String input = AOCUtils.getInput(year, day);
         var startP1 = System.nanoTime();
         String part1 = part1(input);
         var endP1 = System.nanoTime();
