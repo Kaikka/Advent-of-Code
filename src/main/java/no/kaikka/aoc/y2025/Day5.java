@@ -71,13 +71,7 @@ public class Day5 extends AOCRunner {
         }
 
         private boolean isOverlapping(Range r) {
-            if (r.min() <= this.max() && r.max() >= this.min()) {
-                return true;
-            }
-            if (r.max() >= this.min() && r.min() <= this.max()) {
-                return true;
-            }
-            return false;
+            return r.min() <= this.max() && r.max() >= this.min();
         }
 
         private Range merge(List<Range> r) {
