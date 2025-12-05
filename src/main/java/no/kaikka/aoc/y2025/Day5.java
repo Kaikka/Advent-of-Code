@@ -35,7 +35,7 @@ public class Day5 extends AOCRunner {
         List<Range> ranges = new ArrayList<>();
 
         for (String line : input.split("\n")) {
-            if (line.isEmpty()) break; // Could also wrap code below in if-check for contains("-")
+            if (line.isEmpty()) break;
 
             Range r = new Range(Long.parseLong(line.split("-")[0]), Long.parseLong(line.split("-")[1]));
             List<Range> rangesToReplace = findOverlappingRanges(r, ranges);
