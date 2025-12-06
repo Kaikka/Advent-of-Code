@@ -64,6 +64,34 @@ public class Day6 extends AOCRunner {
 
     @Override
     public String part2(String input) {
-        return "";
+        var split = input.split("\n");
+        List<Calculation> calculations = new ArrayList<>();
+
+        Calculation calc = new Calculation();
+        boolean doneWithCalc = false;
+
+        for (int i = split[0].length()-1; i >= 0; i--) {
+            StringBuilder num = new StringBuilder();
+            for (String s : split) {
+                char c = s.charAt(i);
+                if (c == '*' || c == '+') {
+                    calc.setOperator(String.valueOf(c));
+                    i--;
+                    doneWithCalc = true;
+                } else if (c != ' ') {
+                    num.append(c);
+                }
+            }
+            calc.addNumber(Integer.parseInt(num.toString()));
+            if (doneWithCalc) {
+                calculations.add(calc);
+                calc = new Calculation();
+                doneWithCalc = false;
+            }
+        }
+
+        return "" + calculations.stream()
+                .mapToLong(Calculation::getSum)
+                .sum();
     }
 }
