@@ -67,6 +67,7 @@ public class Day6 extends AOCRunner {
         var split = input.split("\n");
         List<Calculation> calculations = new ArrayList<>();
 
+        // Honestly quite unhappy with the way I did this, but at least it's blazing fast lol
         Calculation calc = new Calculation();
         boolean doneWithCalc = false;
 
