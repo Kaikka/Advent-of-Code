@@ -26,10 +26,11 @@ public class Day2 extends AOCRunner {
     // I can probably regexify this...somehow
     // str.matches("^(\\w+)\\1$"), but performance is way worse
     private boolean isInvalid(long n) {
-        int v = (int) Math.log10(Math.abs(n)) + 1; // Length of number
-        if (v % 2 == 1) return false; // Not needed, but makes it a bit faster
+        //int v = (int) Math.log10(Math.abs(n)) + 1; // Length of number
+        //if (v % 2 == 1) return false; // Not needed, but makes it a bit faster
 
         String str = String.valueOf(n);
+        if (str.length() % 2 == 1) return false; // Optimization
         String first = str.substring(0, str.length() / 2);
         String last = str.substring(str.length() / 2);
         return first.equals(last);
@@ -53,11 +54,11 @@ public class Day2 extends AOCRunner {
 
     // I can probably regexify this...somehow
     private boolean isInvalidP2(long n) {
-        int v = (int) Math.log10(Math.abs(n)) + 1; // Length of number
+        //int v = (int) Math.log10(Math.abs(n)) + 1; // Length of number
 
         String str = String.valueOf(n);
         String x = "";
-        for (int i = 0; i < v / 2; i++) {
+        for (int i = 0; i < str.length() / 2; i++) {
             x += str.charAt(i);
             if (str.replaceAll(x, "").isEmpty()) {
                 return true;
