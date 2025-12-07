@@ -30,7 +30,7 @@ public class Day2 extends AOCRunner {
         if (nl % 2 == 1) return false; // We can't split it in two. Optimization
         int l = (int) Math.pow(10, nl / 2.0);
 
-        return n / l == n % l;
+        return n / l == n % l; // Divide it by half the length to get first half. Modulo to get second half
         /*
         Old implementation
         String str = String.valueOf(n);
