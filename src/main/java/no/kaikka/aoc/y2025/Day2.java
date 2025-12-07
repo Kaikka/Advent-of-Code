@@ -29,15 +29,9 @@ public class Day2 extends AOCRunner {
         if (v % 2 == 1) return false; // Not needed, but makes it a bit faster
 
         String str = String.valueOf(n);
-        String x = "";
-        for (int i = 0; i < v / 2; i++) {
-            x += str.charAt(i);
-            if (str.replaceFirst(x, "").replaceFirst(x, "").isEmpty()) {
-                return true;
-            }
-        }
-
-        return false;
+        String first = str.substring(0, str.length() / 2);
+        String last = str.substring(str.length() / 2);
+        return first.equals(last);
     }
 
     @Override
