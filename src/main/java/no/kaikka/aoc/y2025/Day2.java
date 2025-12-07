@@ -26,14 +26,19 @@ public class Day2 extends AOCRunner {
     // I can probably regexify this...somehow
     // str.matches("^(\\w+)\\1$"), but performance is way worse
     private boolean isInvalid(long n) {
-        //int v = (int) Math.log10(Math.abs(n)) + 1; // Length of number
-        //if (v % 2 == 1) return false; // Not needed, but makes it a bit faster
+        int nl = (int) Math.log10(Math.abs(n)) + 1; // Length of number
+        if (nl % 2 == 1) return false; // We can't split it in two. Optimization
+        int l = (int) Math.pow(10, nl / 2.0);
 
+        return n / l == n % l;
+        /*
+        Old implementation
         String str = String.valueOf(n);
         if (str.length() % 2 == 1) return false; // Optimization
         String first = str.substring(0, str.length() / 2);
         String last = str.substring(str.length() / 2);
         return first.equals(last);
+         */
     }
 
     @Override
