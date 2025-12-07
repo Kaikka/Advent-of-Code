@@ -1,3 +1,3 @@
-# Advent of Code 2024
+# Advent of Code
 
 Requires `src/main/resources/aoc.properties` with cookie=value
