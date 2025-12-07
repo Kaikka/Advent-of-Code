@@ -24,6 +24,7 @@ public class Day2 extends AOCRunner {
     }
 
     // I can probably regexify this...somehow
+    // str.matches("^(\\w+)\\1$"), but performance is way worse
     private boolean isInvalid(long n) {
         int v = (int) Math.log10(Math.abs(n)) + 1; // Length of number
         if (v % 2 == 1) return false; // Not needed, but makes it a bit faster
